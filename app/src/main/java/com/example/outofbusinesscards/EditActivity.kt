@@ -15,7 +15,7 @@ class EditActivity : AppCompatActivity() {
 
         //値の取得
         val pref = PreferenceManager.getDefaultSharedPreferences(this).apply {
-            //applu関数を使うとより簡潔に書くことができる。
+            //apply関数を使うとより簡潔に書くことができる。
             val company = getString("company","")
             val postal = getString("postal","")
             val address = getString("address","")
