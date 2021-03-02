@@ -1,7 +1,10 @@
 package com.example.outofbusinesscards
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.preference.PreferenceManager
 import com.example.outofbusinesscards.databinding.ActivityMainBinding
 
@@ -39,6 +42,43 @@ class MainActivity : AppCompatActivity() {
             binding.nameText.text = name
 
         }
+    }
+
+    /**
+     * メニューを表示するために使う
+     * @param menu オプションメニューのインスタンス
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        /**
+         * メニュー表示する
+         * @param XMLファイルのリソースID
+         * @param 追加先のmenu
+         */
+        menuInflater.inflate(R.menu.main,menu)
+        return true
+    }
+
+    /**
+     * メニューが選択されたときの処理を書く
+     * MenuItemのIDによって処理を分岐させる
+     * @param item MenuItemのインスタンス
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId){
+            R.id.edit ->{
+                //Kotlinではクラス名::class.javaでクラスのインスタンスを取得する
+                /**
+                 * アクティビティを開く
+                 * ①開きたいアクティビティを引数に指定して、Intentクラスのインスタンスを生成する
+                 * ②①で生成したインスタンスをstartActivityに渡す(明示的なインテント)
+                 * @param this Context:アプリ自体に関する情報を保持しているオブジェクト(アクティビティなどのコンポーネントはContextのサブクラス)
+                 */
+                val intent = Intent(this,EditActivity::class.java)
+                //
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
